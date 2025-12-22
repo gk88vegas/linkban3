@@ -1,0 +1,15 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {%- set totalPages = bookmarks.length %}
+  {%- set pagesPerSitemap = 5000 %}
+  {%- set numSitemaps = (totalPages / pagesPerSitemap) | round(0, "ceil") %}
+  {%- for i in range(0, numSitemaps) %}
+  <sitemap>
+    <loc>https://jav-nhat-ban.vercel.app/sitemap-{{ i + 1 }}.xml</loc>
+  </sitemap>
+  {%- endfor %}
+</sitemapindex>

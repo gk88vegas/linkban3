@@ -1,0 +1,16 @@
+{
+  "name": "eleventy-static-site",
+  "version": "1.0.0",
+  "description": "Static site generator with Eleventy for thousands of pages",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve",
+    "clean": "rm -rf _site"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

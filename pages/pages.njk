@@ -1,0 +1,33 @@
+---
+pagination:
+  data: bookmarks
+  size: 1
+  alias: page
+permalink: "/{{ page.slug }}/"
+layout: layout.njk
+eleventyComputed:
+  title: "{{ page.title }}"
+  description: "{{ page.description }}"
+---
+
+<div class="content">
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; margin-top: 30px;">
+    {% for bookmark in page.bookmarks %}
+    <a href="{{ bookmark.url }}" target="_blank" rel="noopener" class="code-link">
+      🎬 {{ bookmark.code }}
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="related">
+  <h2>Các trang khác</h2>
+  <div class="related-links">
+    {% for relatedPage in bookmarks | getRelated(page.slug, 6) %}
+    <a href="/{{ relatedPage.slug }}/" class="related-link">
+      <h3>{{ relatedPage.title }}</h3>
+      <p>{{ relatedPage.description }}</p>
+    </a>
+    {% endfor %}
+  </div>
+</div>

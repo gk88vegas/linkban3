@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6; 
+      padding: 0;
+      background: linear-gradient(135deg, #1a0000 0%, #000000 50%, #1a0000 100%);
+      color: #e0e0e0;
+      min-height: 100vh;
+    }
+    .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+    header { 
+      background: linear-gradient(135deg, #ff0844 0%, #ff6b6b 100%);
+      padding: 40px 20px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(255, 8, 68, 0.3);
+      border-bottom: 3px solid #ff0844;
+    }
+    header .container { padding: 0 20px; }
+    h1 { 
+      color: #fff;
+      font-size: 2.5em;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      letter-spacing: -0.5px;
+    }
+    .description { color: #ffe0e6; font-size: 1.2em; font-weight: 300; }
+    .content { margin: 30px 0; }
+    .related { margin-top: 50px; padding-top: 30px; border-top: 2px solid #ff0844; }
+    .related h2 { margin-bottom: 25px; color: #ff6b6b; font-size: 1.8em; font-weight: 600; }
+    .related-links { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .related-link { 
+      padding: 20px;
+      background: linear-gradient(135deg, #2a0a0a 0%, #1a0505 100%);
+      border: 1px solid #ff084433;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #e0e0e0;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    .related-link:hover { 
+      border-color: #ff0844;
+      background: linear-gradient(135deg, #3a0a0a 0%, #2a0505 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 8, 68, 0.4);
+    }
+    .related-link h3 { color: #ff6b6b; margin-bottom: 8px; font-size: 1.1em; font-weight: 600; }
+    .related-link p { color: #b0b0b0; font-size: 0.9em; line-height: 1.5; }
+    nav { 
+      background: rgba(26, 0, 0, 0.8);
+      padding: 15px 20px;
+      margin-bottom: 0;
+      border-bottom: 1px solid #ff084433;
+      backdrop-filter: blur(10px);
+    }
+    nav a { 
+      color: #ff6b6b;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    nav a:hover { color: #ff0844; }
+    .age-warning {
+      background: #ff0844;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9em;
+      letter-spacing: 0.5px;
+    }
+    .code-link {
+      padding: 18px 12px;
+      background: linear-gradient(135deg, #2a0a0a 0%, #1a0505 100%);
+      border: 2px solid #ff084433;
+      border-radius: 10px;
+      text-align: center;
+      text-decoration: none;
+      color: #ff6b6b;
+      font-weight: 600;
+      font-size: 0.95em;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      letter-spacing: 0.5px;
+      display: block;
+    }
+    .code-link:hover {
+      border-color: #ff0844;
+      background: linear-gradient(135deg, #3a0a0a 0%, #2a0505 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 8, 68, 0.4);
+    }
+    .stats-box {
+      background: linear-gradient(135deg, #2a0a0a 0%, #1a0505 100%);
+      padding: 30px;
+      border-radius: 15px;
+      border: 1px solid #ff084433;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .stats-box h2 { color: #ff6b6b; margin-bottom: 20px; font-size: 1.8em; }
+    .stats-box p { font-size: 1.1em; margin-bottom: 10px; }
+    .stats-box strong { color: #ff6b6b; font-size: 1.3em; }
+    .btn {
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #ff0844 0%, #ff6b6b 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(255, 8, 68, 0.3);
+      display: inline-block;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 8, 68, 0.5);
+    }
+    .btn-outline {
+      padding: 12px 18px;
+      background: linear-gradient(135deg, #2a0a0a 0%, #1a0505 100%);
+      border: 1px solid #ff084433;
+      color: #ff6b6b;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    .btn-outline:hover {
+      border-color: #ff0844;
+      background: linear-gradient(135deg, #3a0a0a 0%, #2a0505 100%);
+    }
+    .btn-active {
+      padding: 12px 18px;
+      background: linear-gradient(135deg, #ff0844 0%, #ff6b6b 100%);
+      color: white;
+      border-radius: 8px;
+      font-weight: 700;
+      box-shadow: 0 2px 10px rgba(255, 8, 68, 0.4);
+      display: inline-block;
+    }
+    footer {
+      background: linear-gradient(135deg, #1a0000 0%, #0a0000 100%);
+      border-top: 2px solid #ff0844;
+      margin-top: 60px;
+      padding: 40px 20px 30px;
+      box-shadow: 0 -4px 20px rgba(255, 8, 68, 0.2);
+    }
+    footer .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    .footer-section h3 {
+      color: #ff6b6b;
+      font-size: 1.3em;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+    .footer-section a {
+      color: #b0b0b0;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: inline-block;
+    }
+    .footer-section a:hover {
+      color: #ff6b6b;
+      transform: translateX(5px);
+    }
+    .footer-section p {
+      color: #b0b0b0;
+      line-height: 1.8;
+      font-size: 0.95em;
+    }
+    .footer-bottom {
+      border-top: 1px solid #ff084433;
+      padding-top: 20px;
+      text-align: center;
+      color: #808080;
+      font-size: 0.9em;
+    }
+    .footer-bottom a {
+      color: #ff6b6b;
+      text-decoration: none;
+    }
+    .footer-bottom a:hover {
+      color: #ff0844;
+    }
+    .footer-custom-links {
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 1px solid #ff084433;
+    }
+    .footer-custom-links h3 {
+      color: #ff6b6b;
+      font-size: 1.3em;
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .custom-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .custom-links-grid a {
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #2a0a0a 0%, #1a0505 100%);
+      border: 1px solid #ff084433;
+      border-radius: 8px;
+      color: #ff6b6b;
+      text-decoration: none;
+      text-align: center;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: block;
+    }
+    .custom-links-grid a:hover {
+      border-color: #ff0844;
+      background: linear-gradient(135deg, #3a0a0a 0%, #2a0505 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 8, 68, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="age-warning">🔞 CẢNH BÁO: Nội dung dành cho người trên 18 tuổi</div>
+  <nav>
+    <div class="container">
+      <a href="/">🏠 Trang chủ</a>
+      <a href="#hot">🔥 Hot nhất</a>
+      <a href="#new">⭐ Mới nhất</a>
+    </div>
+  </nav>
+  <header>
+    <div class="container">
+      <h1>{{ title }}</h1>
+      <p class="description">{{ description }}</p>
+    </div>
+  </header>
+  <main class="container">
+    {{ content | safe }}
+  </main>
+  
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>🔗 Liên kết nhanh</h3>
+          <ul>
+            <li><a href="/">🏠 Trang chủ</a></li>
+            <li><a href="#hot">🔥 Phim hot nhất</a></li>
+            <li><a href="#new">⭐ Phim mới nhất</a></li>
+            <li><a href="#trending">📈 Xu hướng</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>📂 Danh mục</h3>
+          <ul>
+            <li><a href="#category1">Danh mục 1</a></li>
+            <li><a href="#category2">Danh mục 2</a></li>
+            <li><a href="#category3">Danh mục 3</a></li>
+            <li><a href="#category4">Danh mục 4</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>ℹ️ Thông tin</h3>
+          <ul>
+            <li><a href="#about">Giới thiệu</a></li>
+            <li><a href="#contact">Liên hệ</a></li>
+            <li><a href="#privacy">Chính sách bảo mật</a></li>
+            <li><a href="#terms">Điều khoản sử dụng</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>📢 Về chúng tôi</h3>
+          <p>Website cung cấp nội dung giải trí dành cho người lớn. Vui lòng tuân thủ luật pháp địa phương khi truy cập.</p>
+          <p style="margin-top: 15px;">🔞 Chỉ dành cho người trên 18 tuổi</p>
+        </div>
+      </div>
+      
+      <!-- Khối custom links - Thêm links của bạn vào đây -->
+      <div class="footer-custom-links">
+        <div class="custom-links-grid">
+          <!-- Thêm links của bạn ở đây, ví dụ: -->
+          <!-- <a href="https://example1.com">#</a> -->
+          <!-- <a href="https://example2.com">#</a> -->
+          <!-- <a href="https://example3.com">#</a> -->
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 {{ title }}. All rights reserved. | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jav-nhat-ban.vercel.app/sitemap.xml

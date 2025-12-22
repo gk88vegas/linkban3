@@ -1,0 +1,48 @@
+---
+layout: layout.njk
+title: "Cập nhật link xem phim sex mới nhất"
+description: "Danh sách code phim sex kèm link xem mượt mà nhất cho đồng dâm"
+pagination:
+  data: bookmarks
+  size: 50
+  alias: pageList
+permalink: "{% if pagination.pageNumber > 0 %}/page-{{ pagination.pageNumber + 1 }}/{% else %}/{% endif %}"
+---
+
+<div class="content">
+  <div class="stats-box">
+    <h2>📊 Thống kê</h2>
+    <p>🎬 Tổng số bộ phim: <strong>{{ bookmarks.length }}</strong></p>
+    <p>📄 Đang xem: <strong>Trang {{ pagination.pageNumber + 1 }}</strong> / {{ pagination.pages.length }}</p>
+  </div>
+  
+  <h3 style="margin: 40px 0 25px 0; color: #ff6b6b; font-size: 1.6em; font-weight: 600;">🔥 Danh sách phim HOT:</h3>
+  <div class="related-links">
+    {% for page in pageList %}
+    <a href="/{{ page.slug }}/" class="related-link">
+      <h3>🎬 {{ page.title }}</h3>
+      <p>{{ page.description }}</p>
+    </a>
+    {% endfor %}
+  </div>
+  
+  <nav style="margin-top: 50px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; padding: 30px 0;">
+    {% if pagination.previousPageHref %}
+    <a href="{{ pagination.previousPageHref }}" class="btn">← Trang trước</a>
+    {% endif %}
+    
+    {% for pageNum in range(0, pagination.pages.length) %}
+      {% if pageNum == pagination.pageNumber %}
+        <span class="btn-active">{{ pageNum + 1 }}</span>
+      {% elif pageNum < 5 or pageNum > pagination.pages.length - 6 or (pageNum > pagination.pageNumber - 3 and pageNum < pagination.pageNumber + 3) %}
+        <a href="{% if pageNum == 0 %}/{% else %}/page-{{ pageNum + 1 }}/{% endif %}" class="btn-outline">{{ pageNum + 1 }}</a>
+      {% elif pageNum == 5 or pageNum == pagination.pages.length - 6 %}
+        <span style="padding: 12px 18px; color: #666;">...</span>
+      {% endif %}
+    {% endfor %}
+    
+    {% if pagination.nextPageHref %}
+    <a href="{{ pagination.nextPageHref }}" class="btn">Trang sau →</a>
+    {% endif %}
+  </nav>
+</div>
